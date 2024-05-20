@@ -36,36 +36,6 @@ public class Pet {
         this(0,name,type,breed);
     }
 
-    public Pet(TypePet type) {
-        this(null, type, null);
-    }
-
-    public static Pet getFakePet(){
-        Faker faker = new Faker();
-        TypePet typePet = rdmType();
-        String breed;
-
-        if (typePet == TypePet.Cat) {
-            breed = faker.cat().breed();
-        }
-        else {
-            breed = typePet == TypePet.Dog ? faker.dog().breed() : faker.funnyName().name();
-        }
-
-        return new Pet(faker.funnyName().name(),typePet,breed);
-    }
-
-    private static TypePet rdmType(){
-        int rdm = ThreadLocalRandom.current().nextInt(1,5);
-        switch (rdm){
-            case 1: return TypePet.Cat;
-            case 2: return TypePet.Dog;
-            case 3: return TypePet.Turtle;
-            case 4: return TypePet.Wolf;
-            case 5: return TypePet.Dragon;
-            default: return TypePet.Dog;
-        }
-    }
     public Pet() {
     }
 

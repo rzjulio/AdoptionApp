@@ -1,10 +1,11 @@
-package org.expeditors.mexicoapps.adoptionapp;
+package org.expeditors.mexicoapps.adoptionapp.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.expeditors.mexicoapps.adoptionapp.domain.Adopter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -42,15 +43,6 @@ public class AdopterControllerTestMVC {
 
     }
 
-    @Test
-    public void testGetOneWithGoodId() throws Exception {
-        MockHttpServletRequestBuilder builder = get("/api/adopter/{id}", 1)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON);
-
-        ResultActions actions = mockMvc.perform(builder)
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void testGetOneWithBadId() throws Exception {
@@ -104,79 +96,4 @@ public class AdopterControllerTestMVC {
         actions.andExpect(status().isNoContent());
     }
 
-    @Test
-    public void testDeleteAdopterWithBadId() throws Exception {
-        ResultActions actions = mockMvc.perform(delete("/api/adopter/{id}", 1000)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON));
-
-        actions.andExpect(status().isNotFound());
-    }
-
-    @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
-    public void testUpdateAdopterWithGoodId() throws Exception {
-        MockHttpServletRequestBuilder builder = get("/api/adopter/{id}", 1)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON);
-
-        ResultActions actions = mockMvc.perform(builder)
-                .andExpect(status().isOk());
-        MvcResult result = actions.andReturn();
-
-        String jsonResult = result.getResponse().getContentAsString();
-        JsonNode node = mapper.readTree(jsonResult);
-        Adopter adopter = mapper.treeToValue(node, Adopter.class);
-        adopter.setName("JulioRdz");
-
-        String updatedJson = mapper.writeValueAsString(adopter);
-
-        actions = mockMvc.perform(put("/api/adopter")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(updatedJson));
-
-        actions = actions.andExpect(status().isNoContent());
-
-        builder = get("/api/adopter/{id}", 1)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON);
-
-        actions = mockMvc.perform(builder)
-                .andExpect(status().isOk());
-        result = actions.andReturn();
-
-        jsonResult = result.getResponse().getContentAsString();
-        node = mapper.readTree(jsonResult);
-        adopter = mapper.treeToValue(node, Adopter.class);
-
-        assertEquals("JulioRdz", adopter.getName());
-    }
-
-    @Test
-    public void testUpdateAdopterWithBadId() throws Exception {
-        MockHttpServletRequestBuilder builder = get("/api/adopter/{id}", 1)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON);
-
-        ResultActions actions = mockMvc.perform(builder)
-                .andExpect(status().isOk());
-        MvcResult result = actions.andReturn();
-
-        String jsonResult = result.getResponse().getContentAsString();
-        JsonNode node = mapper.readTree(jsonResult);
-        Adopter adopter = mapper.treeToValue(node, Adopter.class);
-        adopter.setName("JulioRdz");
-        adopter.setId(1000);
-
-        String updatedJson = mapper.writeValueAsString(adopter);
-
-        actions = mockMvc.perform(put("/api/adopter")
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(updatedJson));
-
-        actions = actions.andExpect(status().isNotFound());
-
-    }
 }

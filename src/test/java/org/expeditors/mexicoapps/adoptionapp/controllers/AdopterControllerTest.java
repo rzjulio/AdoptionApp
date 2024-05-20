@@ -1,4 +1,4 @@
-package org.expeditors.mexicoapps.adoptionapp;
+package org.expeditors.mexicoapps.adoptionapp.controllers;
 
 import org.expeditors.mexicoapps.adoptionapp.controller.AdopterController;
 import org.expeditors.mexicoapps.adoptionapp.domain.Adopter;

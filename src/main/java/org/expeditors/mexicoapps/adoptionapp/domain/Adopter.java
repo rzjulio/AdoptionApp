@@ -39,10 +39,4 @@ public class Adopter {
     public String toString() {
         return STR."Adopter{id=\{id}, name='\{name}\{'\''}, phone='\{phone}\{'\''}, date=\{date}\{'}'}";
     }
-
-    public static Adopter getFakeAdopter(){
-        Faker faker = new Faker();
-        return new Adopter(faker.name().fullName(),faker.phoneNumber().phoneNumber());
-    }
-
 }
