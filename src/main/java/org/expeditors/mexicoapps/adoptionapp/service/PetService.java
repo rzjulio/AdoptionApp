@@ -21,7 +21,7 @@ public class PetService {
 //    }
 
     public boolean deletePet(int id){
-        petDAO.deleteById(1);
+        petDAO.deleteById(id);
         return petDAO.findById(id).isEmpty();
     }
 

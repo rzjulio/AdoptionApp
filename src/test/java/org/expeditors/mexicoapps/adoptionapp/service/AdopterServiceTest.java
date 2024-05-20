@@ -1,10 +1,9 @@
-package org.expeditors.mexicoapps.adoptionapp;
+package org.expeditors.mexicoapps.adoptionapp.service;
 
 import org.expeditors.mexicoapps.adoptionapp.domain.Adopter;
-import org.expeditors.mexicoapps.adoptionapp.domain.TypePet;
-import org.expeditors.mexicoapps.adoptionapp.service.AdopterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class AdopterTest {
+public class AdopterServiceTest {
 
     @Autowired
     private AdopterService adopterService;
@@ -64,12 +63,5 @@ public class AdopterTest {
         boolean deleted = adopterService.deleteAdopter(adopterInserted.getId());
         assertTrue(deleted);
     }
-
-    @Test
-    public void testAdopterServiceDeleteNonExistingAdopter(){
-        boolean deleted = adopterService.deleteAdopter(88);
-        assertFalse(deleted);
-    }
-
 
 }

@@ -27,7 +27,7 @@ public class AdopterService {
     }
 
     public boolean deleteAdopter(int id){
-        adopterDAO.deleteById(1);
+        adopterDAO.deleteById(id);
         return adopterDAO.findById(id).isEmpty();
     }
 
@@ -51,7 +51,7 @@ public class AdopterService {
     }
 
     public boolean adoptAPet(int idAdopter, int idPet){
-        return adopterDAO.adoptPet(idAdopter,idPet)>1;
+        return adopterDAO.adoptPet(idAdopter,idPet)>0;
     }
 
     private static boolean predicates(Adopter adopter, String value) {
