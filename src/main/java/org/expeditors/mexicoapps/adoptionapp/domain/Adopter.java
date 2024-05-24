@@ -1,14 +1,11 @@
 package org.expeditors.mexicoapps.adoptionapp.domain;
 
-import com.github.javafaker.Faker;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter

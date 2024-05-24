@@ -3,25 +3,24 @@ package org.expeditors.mexicoapps.adoptionapp.jconfig;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
-import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@Component
+//@Component
 public class InitDB {
     public static void main(String[] args) {
 
     }
 
     public static void initSchema() {
-        String schemaFile = "sql/1-create-db-and-tbls.sql";
+        String schemaFile = "sql/postgres/1-create-db-and-tbls.sql";
         runSchemaFile(getDataSource(), schemaFile);
     }
 
     public static void initData() {
-        String insertData = "sql/2-insert-data.sql";
+        String insertData = "sql/postgres/2-insert-data.sql";
         runSchemaFile(getDataSource(), insertData);
     }
 

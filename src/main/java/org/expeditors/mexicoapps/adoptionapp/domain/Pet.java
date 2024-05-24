@@ -1,14 +1,9 @@
 package org.expeditors.mexicoapps.adoptionapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.javafaker.Faker;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 @Setter
