@@ -27,8 +27,11 @@ public class AdopterService {
     }
 
     public boolean deleteAdopter(int id){
-        adopterDAO.deleteById(id);
-        return adopterDAO.findById(id).isEmpty();
+        if(adopterDAO.existsById(id)){
+            adopterDAO.deleteById(id);
+            return !adopterDAO.existsById(id);
+        }
+        return false;
     }
 
     public Adopter getAdopter(int id){

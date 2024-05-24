@@ -2,7 +2,6 @@ package org.expeditors.mexicoapps.adoptionapp.service;
 
 
 import org.expeditors.mexicoapps.adoptionapp.dao.PetDAO;
-import org.expeditors.mexicoapps.adoptionapp.domain.Adopter;
 import org.expeditors.mexicoapps.adoptionapp.domain.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
